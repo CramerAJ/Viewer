@@ -63,16 +63,11 @@
             position:relative;
             left: 47%;
             top: 3px;
-        }
-        @media (max-width: 450px) {
-            .headcontainer {
-                background-image: url("vetro_logo_circle.png");
-                background-position: left;
-                background-size:32px 32px ;
-                left: 5px;
-                top: 0px;
 
-            }
+        }
+        .button:hover{
+            opacity: .7;
+
         }
         @media (max-width: 450px) {
             .button {
@@ -89,6 +84,18 @@
                 position:relative;
                 left: 15%;
                 top: 3px;
+
+            }
+
+        }
+        @media (max-width: 450px) {
+            .headcontainer {
+                background-image: url("vetro_logo_circle.png");
+                background-position: left;
+                background-size:32px 32px ;
+                left: 5px;
+                top: 0px;
+
             }
         }
         @media (min-width: 450px) {
@@ -187,7 +194,6 @@
                 console.log(e);
                 e.layer.bindPopup("Attributes: "+"</br>"+info.join("")).openPopup();
 
-
             });
     };
 
@@ -224,8 +230,6 @@
             console.log("NEW API INFO BELOW");
             console.log(geom);
             let featureCollection = [];
-
-
             for (let i = 0; i < geom.length; i++) {
 
                 featureCollection.push(geom[i].featurecollection);

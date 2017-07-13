@@ -21,12 +21,12 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="557">
-              <caret line="81" column="26" lean-forward="false" selection-start-line="81" selection-start-column="26" selection-end-line="81" selection-end-column="26" />
+            <state relative-caret-position="421">
+              <caret line="70" column="9" lean-forward="true" selection-start-line="70" selection-start-column="9" selection-end-line="70" selection-end-column="9" />
               <folding>
-                <marker date="1499965192000" expanded="true" signature="9825:9836" ph="..." />
-                <marker date="1499965192000" expanded="true" signature="9906:9913" ph="–" />
-                <marker date="1499965192000" expanded="true" signature="9934:9941" ph="–" />
+                <marker date="1499975690000" expanded="true" signature="9884:9895" ph="..." />
+                <marker date="1499975690000" expanded="true" signature="9965:9972" ph="–" />
+                <marker date="1499975690000" expanded="true" signature="9993:10000" ph="–" />
               </folding>
             </state>
           </provider>
@@ -74,9 +74,9 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1019" />
+    <option name="x" value="-840" />
     <option name="y" value="23" />
-    <option name="width" value="1018" />
+    <option name="width" value="840" />
     <option name="height" value="1050" />
   </component>
   <component name="ProjectView">
@@ -230,18 +230,19 @@
       <updated>1499951934098</updated>
       <workItem from="1499951935489" duration="5284000" />
       <workItem from="1499962333444" duration="171000" />
-      <workItem from="1499962570883" duration="109000" />
+      <workItem from="1499962570883" duration="1946000" />
+      <workItem from="1499975224533" duration="483000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5564000" />
+    <option name="totallyTimeSpent" value="7884000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1019" y="23" width="1018" height="1050" extended-state="0" />
+    <frame x="-840" y="23" width="840" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17652959" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17652959" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -275,9 +276,9 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1499965192000" expanded="true" signature="9825:9836" ph="..." />
-            <marker date="1499965192000" expanded="true" signature="9906:9913" ph="–" />
-            <marker date="1499965192000" expanded="true" signature="9934:9941" ph="–" />
+            <marker date="1499975690000" expanded="true" signature="9884:9895" ph="..." />
+            <marker date="1499975690000" expanded="true" signature="9965:9972" ph="–" />
+            <marker date="1499975690000" expanded="true" signature="9993:10000" ph="–" />
           </folding>
         </state>
       </provider>
@@ -297,9 +298,31 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1499965192000" expanded="true" signature="9825:9836" ph="..." />
-            <marker date="1499965192000" expanded="true" signature="9906:9913" ph="–" />
-            <marker date="1499965192000" expanded="true" signature="9934:9941" ph="–" />
+            <marker date="1499975690000" expanded="true" signature="9884:9895" ph="..." />
+            <marker date="1499975690000" expanded="true" signature="9965:9972" ph="–" />
+            <marker date="1499975690000" expanded="true" signature="9993:10000" ph="–" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logo_full.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vetro_logo_circle.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1499975690000" expanded="true" signature="9884:9895" ph="..." />
+            <marker date="1499975690000" expanded="true" signature="9965:9972" ph="–" />
+            <marker date="1499975690000" expanded="true" signature="9993:10000" ph="–" />
           </folding>
         </state>
       </provider>
@@ -333,12 +356,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="557">
-          <caret line="81" column="26" lean-forward="false" selection-start-line="81" selection-start-column="26" selection-end-line="81" selection-end-column="26" />
+        <state relative-caret-position="421">
+          <caret line="70" column="9" lean-forward="true" selection-start-line="70" selection-start-column="9" selection-end-line="70" selection-end-column="9" />
           <folding>
-            <marker date="1499965192000" expanded="true" signature="9825:9836" ph="..." />
-            <marker date="1499965192000" expanded="true" signature="9906:9913" ph="–" />
-            <marker date="1499965192000" expanded="true" signature="9934:9941" ph="–" />
+            <marker date="1499975690000" expanded="true" signature="9884:9895" ph="..." />
+            <marker date="1499975690000" expanded="true" signature="9965:9972" ph="–" />
+            <marker date="1499975690000" expanded="true" signature="9993:10000" ph="–" />
           </folding>
         </state>
       </provider>
