@@ -166,25 +166,27 @@
                 console.log(data);
 
                 console.log(data.attributes);
-                let attribute_name = [];
-                let attribute_value = [];
 
                 let attribute = data.attributes;
-
+                let info = [];
                 for (let i = 0; i < attribute.length; i++) {
 
                     if (attribute[i].name != null){
-                        attribute_name.push(attribute[i].name);
+
+                        info.push(attribute[i].name+": ");
+
                     }
                     if (attribute[i].value != null){
-                        attribute_value.push(attribute[i].value);
+                        info.push(attribute[i].value);
+
                     }
+                    info.push("</br>");
                 }
+                console.log(info);
                 console.log(data);
                 console.log(e);
-                e.layer.bindPopup("Attributes:" + "</br>" + "Names: " +
-                    attribute_name+ "</br>"+
-                    "Values: "+attribute_value+" ").openPopup();
+                e.layer.bindPopup("Attributes: "+"</br>"+info.join("")).openPopup();
+
 
             });
     };
