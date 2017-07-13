@@ -206,7 +206,8 @@
             console.log("Removing Backbone");
             map.removeLayer(backbone_layer);
         } else {
-
+            console.log("Expanding View");
+            map.setView([43.6515, -70.2553], 8);
             console.log("Adding Backbone");
             map.addLayer(backbone_layer.on('click',pointClicked));
         }
@@ -215,6 +216,8 @@
             console.log("Removing Lateral");
             map.removeLayer(lateral_layer);
         } else {
+            console.log("Expanding View");
+            map.setView([43.6515, -70.2553], 8);
             console.log("Adding Lateral");
             map.addLayer(lateral_layer.on('click',pointClicked));
         }
@@ -223,6 +226,8 @@
             console.log("Removing Drop");
             map.removeLayer(drop_layer);
         } else {
+            console.log("Expanding View");
+            map.setView([43.6515, -70.2553], 8);
             console.log("Adding Drop");
             map.addLayer(drop_layer.on('click',pointClicked));
         }
