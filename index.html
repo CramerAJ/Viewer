@@ -202,25 +202,28 @@
     let drop_layer = L.layerGroup([]);
 
     function toggleBackBone(){
-        console.log("HERE");
         if (map.hasLayer(backbone_layer)){
-
+            console.log("Removing Backbone");
             map.removeLayer(backbone_layer);
         } else {
+
+            console.log("Adding Backbone");
             map.addLayer(backbone_layer.on('click',pointClicked));
         }
     }function toggleLateral(){
         if (map.hasLayer(lateral_layer)){
-
+            console.log("Removing Lateral");
             map.removeLayer(lateral_layer);
         } else {
+            console.log("Adding Lateral");
             map.addLayer(lateral_layer.on('click',pointClicked));
         }
     }function toggleDrop(){
         if (map.hasLayer(drop_layer)){
-
+            console.log("Removing Drop");
             map.removeLayer(drop_layer);
         } else {
+            console.log("Adding Drop");
             map.addLayer(drop_layer.on('click',pointClicked));
         }
     }
