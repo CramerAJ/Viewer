@@ -1,1 +1,326 @@
-Hello
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset='utf-8'/>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'/>
+    <link rel="stylesheet" href="maxcdn.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.3/css/bootstrap-select.min.css" />
+    <link rel="stylesheet" href="leafletManual.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.1.0/dist/leaflet.css"
+          integrity="sha512-wcw6ts8Anuw10Mzh9Ytw4pylW8+NAD4ch3lqm9lzAsTxg0GFeJgoAtxuCLREZSC5lUXdVyo/7yfsqFjQ4S+aKw=="
+          crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.1.0/dist/leaflet.js"
+            integrity="sha512-mNqn2Wg7tSToJhvHcqfzLMU6J4mkOImSPTxVZAdo+lcPlk+GhZmYgACEe0x35K7YzW1zJ7XyJV/TT1MrdXvMcA=="
+            crossorigin=""></script>
+    <style>
+        #map {
+            position: absolute;
+            width: 100%;
+            height: 94%;
+            bottom:0;
+            right:0;
+            left:0;
+        }
+        .headcontainer{
+            width: 100%;
+            position: absolute;
+            height: 44px;
+            top:0;
+            left:0;
+            z-index: 1;
+            background-size: cover;
+            background-repeat:no-repeat;
+            background-position: 50% 50%;
+
+        }
+        .legend {
+            line-height: 15px;
+            background-color: whitesmoke;
+            color: #555;
+            opacity: 0.8;
+        }
+        .legend i {
+            width: 15px;
+            height: 15px;
+            float: left;
+            margin-right: 8px;
+            opacity: 0.8;
+            background-color: whitesmoke;
+        }
+
+        .button {
+            background-color: #f44336; /* Red */
+            border: none;
+            color: white;
+            width: 17%;
+            height: 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            position:relative;
+            left: 47%;
+            top: 3px;
+        }
+        @media (max-width: 450px) {
+            .headcontainer {
+                background-image: url("vetro_logo_circle.png");
+                background-position: left;
+                background-size:32px 32px ;
+                left: 5px;
+                top: 0px;
+
+            }
+        }
+        @media (max-width: 450px) {
+            .button {
+                border: none;
+                color: white;
+                width: 26%;
+                height: 30px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+                position:relative;
+                left: 15%;
+                top: 3px;
+            }
+        }
+        @media (min-width: 450px) {
+            .headcontainer {
+                background-image: url("logo_full.png");
+                background-size:225px 34px ;
+                background-position: left;
+            }
+        }
+
+
+        .button2 {background-color: #008CBA;} /* Blue */
+        .button3 {background-color: #4CAF50;} /* Green */
+    </style>
+
+</head>
+<body>
+
+<script src="./jquery-3.2.1.min.js"></script>
+<script src="./leaflet-src.js"></script>
+<script src="./leaflet.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.3/js/bootstrap-select.min.js"></script>
+
+<script src="./leaflet-sidebar/src/L.Control.Sidebar.js"></script>
+<link rel="stylesheet" href="./leaflet-sidebar/src/L.Control.Sidebar.css"/>
+
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+
+
+<script src="https://unpkg.com/esri-leaflet@2.0.8"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.2.4/dist/esri-leaflet-geocoder.css">
+<script src="https://unpkg.com/esri-leaflet-geocoder@2.2.4"></script>
+
+<div id="headerImage" class="headcontainer" >
+
+
+
+    <button class="button" onclick="toggleBackBone()">BackBone</button>
+    <button class="button button2" onclick="toggleLateral()" >Lateral</button>
+    <button class="button button3" onclick="toggleDrop()" >Drop</button>
+</div>
+
+<div id='map' class="leaflet-container"></div>
+
+<script>
+
+    //Creates the basemap
+    var map = L.map('map').setView([43.6515, -70.2553], 14);
+    //Portland 43.6515, -70.2553
+    var BaseMap =   L.tileLayer( "https://{s}.tiles.mapbox.com/v3/nbtsolutions.ilgj9mfe/{z}/{x}/{y}.png", {
+        subdomains: 'abcd',
+        maxZoom: 19
+    }).addTo(map);
+    // Additional Basemaps
+    var Satellite = L.tileLayer("https://{s}.tiles.mapbox.com/v3/nbtsolutions.jbn3ge2f/{z}/{x}/{y}.png", {
+        subdomains: 'abcd',
+        maxZoom: 19
+    });
+
+    let pointClicked = function (e) {
+        let singleInfo = e.layer.feature.properties;
+        let planID = singleInfo.planID;
+        let layerID = singleInfo.layerID;
+        let geomID = singleInfo.geomID;
+        let customOptions = {
+            'maxWidth': '500',
+            'className': 'custom'
+        };
+
+        return $.get('https://staging.vetro.io/api/network/' + planID + '/info/' + layerID + '/' + geomID  + '?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoidHJpYWwiLCJpZCI6MywiaWF0IjoxNDY3MjE3MzUwfQ.T7_Y-t9koaih5KDcJWMhA_JcmA4mfDysOtu-GH0d2Eo')
+            .done ( function (data) {
+                console.log(data);
+
+                console.log(data.attributes);
+                let attribute_name = [];
+                let attribute_value = [];
+
+                let attribute = data.attributes;
+
+                for (let i = 0; i < attribute.length; i++) {
+
+                    if (attribute[i].name != null){
+                        attribute_name.push(attribute[i].name);
+                    }
+                    if (attribute[i].value != null){
+                        attribute_value.push(attribute[i].value);
+                    }
+                }
+                console.log(data);
+                console.log(e);
+                e.layer.bindPopup("Attributes:" + "</br>" + "Names: " +
+                    attribute_name+ "</br>"+
+                    "Values: "+attribute_value+" ").openPopup();
+
+            });
+    };
+
+    let backbone_layer = L.layerGroup([]);
+    let lateral_layer = L.layerGroup([]);
+    let drop_layer = L.layerGroup([]);
+
+    function toggleBackBone(){
+        console.log("HERE");
+        if (map.hasLayer(backbone_layer)){
+
+            map.removeLayer(backbone_layer);
+        } else {
+            map.addLayer(backbone_layer.on('click',pointClicked));
+        }
+    }function toggleLateral(){
+        if (map.hasLayer(lateral_layer)){
+
+            map.removeLayer(lateral_layer);
+        } else {
+            map.addLayer(lateral_layer.on('click',pointClicked));
+        }
+    }function toggleDrop(){
+        if (map.hasLayer(drop_layer)){
+
+            map.removeLayer(drop_layer);
+        } else {
+            map.addLayer(drop_layer.on('click',pointClicked));
+        }
+    }
+
+    $.get("http://vetrofiber.com:8082/api/network-tag-geom/As Built?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoidHJpYWwiLCJpZCI6MywiaWF0IjoxNDY3MjE3MzUwfQ.T7_Y-t9koaih5KDcJWMhA_JcmA4mfDysOtu-GH0d2Eo")
+        .done(function (geom) {
+            console.log("NEW API INFO BELOW");
+            console.log(geom);
+            let featureCollection = [];
+
+
+            for (let i = 0; i < geom.length; i++) {
+
+                featureCollection.push(geom[i].featurecollection);
+            }
+
+            L.geoJSON(featureCollection[0], {
+                style: function (features) {
+                    return {
+                        color: "#ff0000",
+                    };
+                }
+            }).addTo(backbone_layer).on('click', pointClicked);
+
+            L.geoJSON(featureCollection[1], {
+                style: function (features) {
+                    return {
+                        color: "#0078A8",
+                    };
+                }
+            }).addTo(lateral_layer).on('click', pointClicked);
+
+            L.geoJSON(featureCollection[2], {
+                style: function (features) {
+                    return {
+                        color: "#3e8f3e",
+                    };
+                }
+            }).addTo(drop_layer).on('click', pointClicked);
+            console.log(featureCollection);
+        });
+
+
+    let Basemaps = {
+        "BaseMap" : BaseMap,
+        "Satelilte": Satellite,
+    };
+    L.control.layers(Basemaps,null).addTo(map);
+
+    //Search Controls
+
+    var arcgisOnline = L.esri.Geocoding.arcgisOnlineProvider();
+    var searchControl = L.esri.Geocoding.geosearch({
+        providers: [
+            arcgisOnline,
+            L.esri.Geocoding.featureLayerProvider({
+                url: 'https://services.arcgis.com/uCXeTVveQzP4IIcx/arcgis/rest/services/gisday/FeatureServer/0/',
+                searchFields: ['Name', 'Organization'],
+                label: 'GIS Day Events',
+                bufferRadius: 5000,
+
+                formatSuggestion: function(feature){
+                    return feature.properties.Name + ' - ' + feature.properties.Organization;
+                }
+            })
+        ]
+    }).addTo(map);
+
+    //Legend/Key
+    function getLColor(d) {
+
+        if (d == 1 ){
+            return "#ff0000";
+        }
+        else if (d == 2 ){
+            return "#0078A8";
+        }
+        else if (d == 3 ){
+            return "#3e8f3e";
+        }
+
+    }
+    let legend = L.control({position: 'bottomright'});
+
+    legend.onAdd = function (map) {
+
+        let div = L.DomUtil.create('div', 'info legend');
+        let line_labels = [
+            "Backbone",
+            "Lateral",
+            "Drop",
+        ];
+        let lines = [1, 2, 3];
+        for ( let i=0; i< lines.length; i++){
+            div.innerHTML +=  '<i style="background:' +
+                getLColor(lines[i]) + '"></i>' +
+                '&ndash;' +line_labels[i] + '&ndash;<br/>'
+        }
+
+        return div;
+    };
+
+    legend.addTo(map);
+
+
+</script>
+
+
+</body>
+
+</html>
