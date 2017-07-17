@@ -105,8 +105,6 @@
                 background-position: left;
             }
         }
-
-
         .button2 {background-color: #008CBA;} /* Blue */
         .button3 {background-color: #4CAF50;} /* Green */
     </style>
@@ -119,23 +117,16 @@
 <script src="./leaflet.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.3/js/bootstrap-select.min.js"></script>
-
 <script src="./leaflet-sidebar/src/L.Control.Sidebar.js"></script>
 <link rel="stylesheet" href="./leaflet-sidebar/src/L.Control.Sidebar.css"/>
 
-
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
-
-
 <script src="https://unpkg.com/esri-leaflet@2.0.8"></script>
 
 <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.2.4/dist/esri-leaflet-geocoder.css">
 <script src="https://unpkg.com/esri-leaflet-geocoder@2.2.4"></script>
 
 <div id="headerImage" class="headcontainer" >
-
-
-
     <button class="button" onclick="toggleBackBone()">BackBone</button>
     <button class="button button2" onclick="toggleLateral()" >Lateral</button>
     <button class="button button3" onclick="toggleDrop()" >Drop</button>
@@ -168,7 +159,8 @@
             'className': 'custom'
         };
 
-        return $.get('https://staging.vetro.io/api/network/' + planID + '/info/' + layerID + '/' + geomID  + '?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoidHJpYWwiLCJpZCI6MywiaWF0IjoxNDY3MjE3MzUwfQ.T7_Y-t9koaih5KDcJWMhA_JcmA4mfDysOtu-GH0d2Eo')
+        return $.get('https://staging.vetro.io/api/network/' + planID + '/info/' + layerID + '/' + geomID  +
+            '?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoidHJpYWwiLCJpZCI6MywiaWF0IjoxNDY3MjE3MzUwfQ.T7_Y-t9koaih5KDcJWMhA_JcmA4mfDysOtu-GH0d2Eo')
             .done ( function (data) {
                 console.log(data);
 
@@ -207,7 +199,7 @@
             map.removeLayer(backbone_layer);
         } else {
             console.log("Expanding View");
-            map.setView([43.6515, -70.2553], 8);
+            map.setView([42.6526, -73.7562], 7);
             console.log("Adding Backbone");
             map.addLayer(backbone_layer.on('click',pointClicked));
         }
@@ -217,7 +209,7 @@
             map.removeLayer(lateral_layer);
         } else {
             console.log("Expanding View");
-            map.setView([43.6515, -70.2553], 8);
+            map.setView([42.6526, -73.7562], 7);
             console.log("Adding Lateral");
             map.addLayer(lateral_layer.on('click',pointClicked));
         }
@@ -227,13 +219,14 @@
             map.removeLayer(drop_layer);
         } else {
             console.log("Expanding View");
-            map.setView([43.6515, -70.2553], 8);
+            map.setView([42.6526, -73.7562], 7);
             console.log("Adding Drop");
             map.addLayer(drop_layer.on('click',pointClicked));
         }
     }
 
-    $.get("https://staging.vetro.io/api/network-tag-geom/As Built?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoidHJpYWwiLCJpZCI6MywiaWF0IjoxNDY3MjE3MzUwfQ.T7_Y-t9koaih5KDcJWMhA_JcmA4mfDysOtu-GH0d2Eo")
+    $.get("https://staging.vetro.io/api/network-tag-geom/As Built" +
+        "?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoidHJpYWwiLCJpZCI6MywiaWF0IjoxNDY3MjE3MzUwfQ.T7_Y-t9koaih5KDcJWMhA_JcmA4mfDysOtu-GH0d2Eo")
         .done(function (geom) {
             console.log("NEW API INFO BELOW");
             console.log(geom);
@@ -244,7 +237,7 @@
             }
 
             L.geoJSON(featureCollection[0], {
-                style: function (features) {
+                style: function () {
                     return {
                         color: "#ff0000",
                     };
@@ -252,7 +245,7 @@
             }).addTo(backbone_layer).on('click', pointClicked);
 
             L.geoJSON(featureCollection[1], {
-                style: function (features) {
+                style: function () {
                     return {
                         color: "#0078A8",
                     };
@@ -260,7 +253,7 @@
             }).addTo(lateral_layer).on('click', pointClicked);
 
             L.geoJSON(featureCollection[2], {
-                style: function (features) {
+                style: function () {
                     return {
                         color: "#3e8f3e",
                     };
@@ -268,7 +261,6 @@
             }).addTo(drop_layer).on('click', pointClicked);
             console.log(featureCollection);
         });
-
 
     let Basemaps = {
         "BaseMap" : BaseMap,
@@ -331,9 +323,7 @@
 
     legend.addTo(map);
 
-
 </script>
-
 
 </body>
 
