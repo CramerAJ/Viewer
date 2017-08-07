@@ -235,7 +235,7 @@
                 featureCollection.push(geom[i].featurecollection);
             }
 
-            L.geoJSON(featureCollection[0], {
+            L.geoJSON(featureCollection[5], {
                 style: function () {
                     return {
                         color: "#ff0000",
@@ -243,7 +243,7 @@
                 }
             }).addTo(backbone_layer).on('click', pointClicked);
 
-            L.geoJSON(featureCollection[1], {
+            L.geoJSON(featureCollection[6], {
                 style: function () {
                     return {
                         color: "#0078A8",
@@ -251,7 +251,7 @@
                 }
             }).addTo(lateral_layer).on('click', pointClicked);
 
-            L.geoJSON(featureCollection[2], {
+            L.geoJSON(featureCollection[4], {
                 style: function () {
                     return {
                         color: "#3e8f3e",
