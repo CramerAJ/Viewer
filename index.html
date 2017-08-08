@@ -126,7 +126,7 @@
 <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.2.4/dist/esri-leaflet-geocoder.css">
 <script src="https://unpkg.com/esri-leaflet-geocoder@2.2.4"></script>
 
-<div id="headerImage" class="headcontainer" >
+<div id="headerImage" style="z-index: 1000; background-color: white;"class="headcontainer" >
     <button class="button" onclick="toggleBackBone()">BackBone</button>
     <button class="button button2" onclick="toggleLateral()" >Lateral</button>
     <button class="button button3" onclick="toggleDrop()" >Drop</button>
@@ -235,6 +235,14 @@
                 featureCollection.push(geom[i].featurecollection);
             }
 
+            L.geoJSON(featureCollection[4], {
+                style: function () {
+                    return {
+                        color: "#3e8f3e",
+                    };
+                }
+            }).addTo(drop_layer).on('click', pointClicked);
+
             L.geoJSON(featureCollection[5], {
                 style: function () {
                     return {
@@ -251,14 +259,6 @@
                 }
             }).addTo(lateral_layer).on('click', pointClicked);
 
-            L.geoJSON(featureCollection[4], {
-                style: function () {
-                    return {
-                        color: "#3e8f3e",
-                    };
-                }
-            }).addTo(drop_layer).on('click', pointClicked);
-            console.log(featureCollection);
         });
 
     let Basemaps = {
@@ -289,13 +289,13 @@
     //Legend/Key
     function getLColor(d) {
 
-        if (d == 1 ){
+        if (d === 1 ){
             return "#ff0000";
         }
-        else if (d == 2 ){
+        else if (d === 2 ){
             return "#0078A8";
         }
-        else if (d == 3 ){
+        else if (d === 3 ){
             return "#3e8f3e";
         }
 
